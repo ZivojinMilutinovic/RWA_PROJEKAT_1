@@ -1,1 +1,3 @@
-console.log(35)
+import User from  "./user"
+let user=new User;
+user.jump();
