@@ -9,10 +9,11 @@ header
 {
    height: 70px;
 }
-img
+#right img
 {
     width: 70px;
     height: 70px;
+    
    
 }
 body
@@ -45,6 +46,7 @@ body
 {
     line-height: 1.5em;
     color: rgb(105, 104, 104);
+    
 }
 .kontejner
 {
@@ -67,7 +69,7 @@ body
 .kontejner ul
 {
     list-style-type: none;
-    perspective: 700px;
+    perspective: 1000px;
     
     
 }
@@ -108,8 +110,8 @@ body
 @media only screen and (max-width:1180px)
 {
    
-   #left{
-       flex-basis: 80% !important;
+   .centriraj{
+       width: 60% !important;
    }
     .kontejner ul li:nth-child(3){
         top: 7em !important;
@@ -121,14 +123,34 @@ body
 }
 @media only screen and (max-width:590px)
 {
+    
+    body{
+        background-image: linear-gradient(#2193b0 ,#6dd5ed);
+    }
+    .centriraj{
+        width: 90% !important;
+    }
+    .kontejner{
+        padding: 0 !important;
+        margin: 0px !important;
+    }
+    .kontejner p, .kontejner strong{
+        margin-left: 10px !important;
+    }
+    .bg,.bg2{
+        display: none !important;
+    }
+    .kontejner p,.kontejner strong{
+        margin-left: 20%;
+    }
     #left{
-        flex-basis: 80% !important;
+        flex-basis: 90% !important;
         margin-bottom: 38% !important;
     }
     .kontejner ul li{
-        width: 100%;
-        margin-right: 5px;
-        transform:none !important;
+        width: 80% !important;
+        margin-right: 15% !important;
+        
     }
     .kontejner ul li:nth-child(3){
         top: 8em !important;
@@ -137,3 +159,37 @@ body
         top: -8em !important;
     }
 }
+/*Ovde se zavrsio prikaz za prvi deo biranja nivoa */
+/*Krece prikaz za login*/
+#login{
+    display: none;
+    
+}
+.centriraj
+{
+    margin: 0 auto;
+    width: 35%;
+    background-color: rgba(0,0,0,0.5);
+    margin-top:4px;
+    border-radius: 15px;
+    
+}
+a{
+    cursor: pointer;
+}
+input[type="checkbox"]{
+    cursor: pointer;
+}
+.hrar{
+    height: 1px;
+    border-top:1px solid wheat;
+  }
+  .leafsPozadina{
+      background-image: url(/slike/leafs.jpeg);
+      background-size: cover;
+      overflow-y: hidden;
+  }
+  /*    */
+  #register{
+      display: none;
+  }

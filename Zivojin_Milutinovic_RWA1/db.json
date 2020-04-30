@@ -1,0 +1,8 @@
+{
+    
+        "users": [
+          { "id": 1, "ime": "Milan", "prezime": "Petrovic","sifra": "kaladont","korisnickoIme":"Milan" ,"email":"halkatran@gmail.com"}
+        ]
+       
+      
+}
