@@ -54,7 +54,7 @@ body
     flex-wrap: wrap;
     width: 100%;
     height: auto;
-    align-self: center;
+    align-self: flex-end;
     margin: 0 50px;
 }
 #left{
@@ -109,6 +109,9 @@ body
 }
 @media only screen and (max-width:1180px)
 {
+    .kontejner p, .kontejner strong{
+        margin-left: 30px !important;
+    }
    
    .centriraj{
        width: 60% !important;
@@ -133,9 +136,10 @@ body
     .kontejner{
         padding: 0 !important;
         margin: 0px !important;
+        align-self: flex-start;
     }
     .kontejner p, .kontejner strong{
-        margin-left: 10px !important;
+        margin-left: 20px !important;
     }
     .bg,.bg2{
         display: none !important;
@@ -159,6 +163,19 @@ body
         top: -8em !important;
     }
 }
+#login button{
+    
+    margin-bottom: 10px;
+    width: 80%;
+    
+}
+#register button{
+    width: 40%;
+}
+.fa .fa-check  + span,#loginGreska {
+    font-size: 24px;
+}
+
 /*Ovde se zavrsio prikaz za prvi deo biranja nivoa */
 /*Krece prikaz za login*/
 #login{
@@ -174,7 +191,7 @@ body
     border-radius: 15px;
     
 }
-a{
+a,button{
     cursor: pointer;
 }
 input[type="checkbox"]{
@@ -189,7 +206,31 @@ input[type="checkbox"]{
       background-size: cover;
       overflow-y: hidden;
   }
-  /*    */
+  /* klase za register*/
   #register{
       display: none;
   }
+  .seaPozadina{
+    background-image: url(/slike/sea.jpg);
+    background-size: cover;
+  }
+  
+  .avatar{
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+  }
+  .xLargeFont{
+      font-size: x-large;
+  }
+  .boja{
+    background-color: rgba(0,0,0,0.5);
+    margin-top:4px;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+
+
+  /*Profil*/

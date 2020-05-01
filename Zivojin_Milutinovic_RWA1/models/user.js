@@ -6,7 +6,5 @@ export default class User{
             this.prezime=prezime;
             this.sifra=sifra;
             this.korisnickoIme=korisnickoIme;
-            
-    }
-    
+    } 
 }
