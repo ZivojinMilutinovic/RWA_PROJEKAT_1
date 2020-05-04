@@ -1,10 +1,13 @@
 export default class User{
-    constructor(brojGodina,ime,prezime,sifra,korisnickoIme)
+    constructor(godinaRodjenja,ime,prezime,sifra,korisnickoIme,pol,email,grad)
     {
-            this.brojGodina=brojGodina;
+            this.godinaRodjenja=godinaRodjenja;
             this.ime=ime;
             this.prezime=prezime;
             this.sifra=sifra;
             this.korisnickoIme=korisnickoIme;
+            this.pol=pol;
+            this.email=email;
+            this.grad=grad;
     } 
 }

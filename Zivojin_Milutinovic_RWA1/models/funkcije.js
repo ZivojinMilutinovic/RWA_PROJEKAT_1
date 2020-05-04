@@ -1,3 +1,5 @@
+import User from "./user"
+
 const URL="http://localhost:3000/";
 
 async function fetchLoginUsers(){
@@ -55,11 +57,82 @@ function registrujSe(){
     document.body.classList.add("seaPozadina");
     register.style.display='block';
     let buttonRegistrujSe=document.getElementById("btnRegistrujSe");
-    buttonRegistrujSe.addEventListener("click",obradiRegistarFormu);
+   
+    buttonRegistrujSe.addEventListener('click',obradiRegistarFormu);
     
 }
 
 function obradiRegistarFormu() {
+    let inputIme=document.getElementById("imeRegister").value;
+    let inputPrezime=document.getElementById("prezimeRegister").value;
+    let inputDatumRodjenja=document.getElementById("datumRodjenja").value;
+    let inputGrad=document.getElementById("gradRegister").value;
+    let inputEmail=document.getElementById("emailRegister").value;
+    let inputKorisnckoIme=document.getElementById("korisnickoImeRegister").value;
+    let inputPassword=document.getElementById("passwordRegister").value;
+    let inputConfirmPassword=document.getElementById("confirmPasswordRegister").value;
+    let pol=vratiIzabraniPol();
+    if(inputIme=="")
+    {
+        obavestiGreskuRegister("Ime ne moze biti prazno");
+        return;
+    }
+    if(inputPrezime=="")
+    {
+        obavestiGreskuRegister("Prezime ne moze biti prazno");
+        return;
+    }
+    if(inputEmail=="")
+    {
+        obavestiGreskuRegister("Email ne moze biti prazno");
+        return;
+    }
+    if(inputKorisnckoIme=="")
+    {
+        obavestiGreskuRegister("korisnicko Ime ne moze biti prazno");
+        return;
+    }
+    if(inputPassword=="")
+    {
+        obavestiGreskuRegister("Niste uneli sifru");
+        return;
+    }
+    if(inputPassword!==inputConfirmPassword){
+        obavestiGreskuRegister("Sifre se ne poklapaju");
+        return;
+    }
+  
+    let user=new User(inputDatumRodjenja,inputIme,inputPrezime,inputPassword
+        ,inputKorisnckoIme,pol,inputEmail,inputGrad);
+        ubaciUseraUBazu(user).then(()=>podesiPocetnuStranicu()).catch(er=>console.log(er));
+      
+}
+
+async function ubaciUseraUBazu(user){
+    return fetch(URL+"users",{
+        method:'POST',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(user)
+    });
+}
+
+function vratiIzabraniPol(){
+    let polRadioButtons=document.getElementsByName("gender");
+    for(let i=0;i<polRadioButtons.length;i++){
+        if(polRadioButtons[i].checked){
+            return polRadioButtons[i].value;
+        }
+
+    }
+}
+
+function obavestiGreskuRegister(nazivGreske) {
+    let spanGreska=document.getElementById("registarGreska");
+    spanGreska.innerHTML=nazivGreske;
+    
     
 }
 
