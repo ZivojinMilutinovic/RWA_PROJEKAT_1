@@ -1,8 +1,21 @@
 import Igra from "./igra";
 
 export default class User{
-    constructor(godinaRodjenja,ime,prezime,sifra,korisnickoIme,pol,email,grad)
+
+    godinaRodjenja:string
+    ime:string
+    prezime:string
+    sifra:string
+    korisnickoIme:string
+    pol:string
+    email:string
+    grad:string
+    najboljiRezultat:number
+    odigraneIgre: Igra[]
+    constructor(godinaRodjenja:string,ime:string,prezime:string,
+        sifra:string,korisnickoIme:string,pol:string,email:string,grad:string)
     {
+            
             this.godinaRodjenja=godinaRodjenja;
             this.ime=ime;
             this.prezime=prezime;

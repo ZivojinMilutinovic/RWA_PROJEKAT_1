@@ -1,21 +1,23 @@
-export default class UserManagement{
+import User from "./user"
 
-        constructor(userArray){
+export default class UserManagement{
+                userArray:User[]
+        constructor(userArray:User[]){
             this.userArray=userArray;
            
         }
-        filtrirajKorisnikePoBrojuPoena(brojPoena){
+        filtrirajKorisnikePoBrojuPoena(brojPoena:number){
             let niz=[]
         return  this.userArray.filter(user=>user.najboljiRezultat>brojPoena)
         }
-        pronadjiKorisnikaPoImenu(korisnickoIme){
+        pronadjiKorisnikaPoImenu(korisnickoIme:string){
                 return this.userArray.find(user=>user.korisnickoIme==korisnickoIme)
         }
         vratiNizRezultataKorisnika(){
             return this.userArray.map(user=>user.najboljiRezultat);
         }
         ukupanRezultatSvihKorisnika(){
-            let ukupanBrojPoena=this.userArray.reduce((acc,currentValue)=>acc+currentValue)
+            let ukupanBrojPoena=this.vratiNizRezultataKorisnika().reduce((acc:number,currentValue:number)=>acc+currentValue)
             return  ukupanBrojPoena;
         }
         odstamajSveKorisnike(){
