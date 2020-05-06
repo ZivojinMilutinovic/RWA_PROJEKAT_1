@@ -1,3 +1,5 @@
+import Igra from "./igra";
+
 export default class User{
     constructor(godinaRodjenja,ime,prezime,sifra,korisnickoIme,pol,email,grad)
     {
@@ -9,5 +11,7 @@ export default class User{
             this.pol=pol;
             this.email=email;
             this.grad=grad;
+            this.najboljiRezultat=0;
+            this.odigraneIgre=[];
     } 
 }

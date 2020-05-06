@@ -1,8 +1,13 @@
 import User from "./user"
+import UserManagement from "./usermanagment";
+
+
 
 const URL="http://localhost:3000/";
 
-async function fetchLoginUsers(){
+
+
+export async function fetchLoginUsers(){
     return fetch(URL+"users").then(res=>res.json()).catch(err=>console.log(err));
     }
 
@@ -36,7 +41,9 @@ let sifra=document.getElementById("passwordLogin").value;
 
 
 fetchLoginUsers().then(users=>{
+    
     let nadjeniUser= users.find(user=>user.korisnickoIme==korisnickoIme && user.sifra==sifra);
+    
     let loginDivGreska=document.getElementById("loginGreska");
     if(nadjeniUser==undefined){
         //Korisnik nije pronadjen
@@ -44,7 +51,7 @@ fetchLoginUsers().then(users=>{
     }
     else{
         //korisnik je pronadjen
-        otvoriProfilnuStranicu();
+        otvoriProfilnuStranicu(korisnickoIme);
     }
          });
 }
@@ -149,15 +156,38 @@ function podesiPocetnuStranicu(){
     document.body.querySelector(".bg2").style.display="block";
     document.getElementById("login").style.display="none";
     document.getElementById("register").style.display="none";
+    document.getElementById("profil").style.display="none";
     document.body.querySelector(".kontejner").style.display="flex";
     document.body.style.display="flex";
     
 }
 
 //Ova funkcija mi je ostala kako se ponasaju elementi
+//prosledicemo zapamti broj poena
+function otvoriProfilnuStranicu(korisnickoIme){
+    fetchLoginUsers().then(myusers=>{
+        let userManagment=new UserManagement(myusers);//klasa koja kao interaguje sa bazom
+        let ulogovaniKorisnik=userManagment.pronadjiKorisnikaPoImenu(korisnickoIme);
+        nacrtajProfilnuStranu(ulogovaniKorisnik)
+        
+    });
+   
+}
 
-function otvoriProfilnuStranicu(){
-
+function nacrtajProfilnuStranu(ulogovaniKorisnik) {
+    console.log(ulogovaniKorisnik.korisnickoIme)
+    let login=document.getElementById('login');
+    login.style.display='none';
+    let profil=document.getElementById('profil')
+    profil.style.display='block';
+    document.body.style.display="flex";
+    document.body.classList.remove("leafsPozadina");
+    document.body.classList.add("profilPozadina");
+    let spanEl=document.body.getElementsByClassName("marquee");
+    for(let i=0;i<spanEl.length;i++){
+        spanEl[i].innerHTML="Zdravo "+ ulogovaniKorisnik.korisnickoIme;
+    }
+    
 }
 
 

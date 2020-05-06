@@ -234,3 +234,100 @@ input[type="checkbox"]{
 
 
   /*Profil*/
+
+  #profil{
+      display: none;
+  }
+  .marquee{
+      
+  }
+  .profilPozadina{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #960030;
+  }
+
+  .box_marquee{
+    width: 1000px;
+    height: 150px;
+    position: relative;
+    
+   
+}
+.side1_marquee,.side2_marquee{
+    width: 500px;
+    height: 150px;
+    position: absolute;
+   
+    outline: 1px solid transparent;
+   
+    font-size: 6em;
+    text-align: center;
+    line-height: 150px;
+overflow: hidden;
+}
+.side1_marquee span,.side2_marquee span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+    color: #fff;
+}
+.side1_marquee{
+background: #d80045;
+left: 0;
+transform-origin: left;
+transform:perspective(800px) rotateY(-64deg);
+}
+.side2_marquee{
+    background: #f1004d;
+    right: 0;
+    transform-origin: right;
+    transform:perspective(800px) rotateY(64deg);
+    }
+    .side1_marquee span{
+        position: absolute;
+        animation: animate1 10s linear infinite;
+        
+    }
+    @keyframes animate1{
+        0%{
+            left: 200%;
+        }
+        100%{
+            left:-100%;
+        }
+    }
+    .side2_marquee span{
+        position: absolute;
+        animation: animate2 10s linear infinite;
+       
+    }
+    @keyframes animate2{
+        0%{
+            right: -100%;
+        }
+        100%{
+            right: 200%;
+        }
+    }
+    @media only screen and (max-width:1024px)
+{
+    .box_marquee,.side1_marquee{
+        margin: 0;
+        padding: 0;
+    }
+.side1_marquee,.side2_marquee{
+    transform: none !important;
+}
+
+
+
+
+
+}

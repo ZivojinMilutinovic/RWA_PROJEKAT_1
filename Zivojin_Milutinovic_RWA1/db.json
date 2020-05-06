@@ -6,7 +6,9 @@
       "prezime": "Petrovic",
       "sifra": "kaladont",
       "korisnickoIme": "Milan",
-      "email": "halkatran@gmail.com"
+      "email": "halkatran@gmail.com",
+      "najboljiRezultat": 0,
+      "odigraneIgre":[]
     },
     {
       "godinaRodjenja": "",
@@ -17,7 +19,25 @@
       "pol": "M",
       "email": "hal@gmail.com",
       "grad": "",
-      "id": 2
+      "id": 2,
+      "najboljiRezultat": 0,
+      "odigraneIgre":[]
+    },
+    {
+      "godinaRodjenja": "2020-05-01",
+      "ime": "Nana",
+      "prezime": "Tatta",
+      "sifra": "kaladont",
+      "korisnickoIme": "bane",
+      "pol": "M",
+      "email": "h@gmail.com",
+      "grad": "Nis",
+      "najboljiRezultat": 0,
+      "id": 3,
+      "odigraneIgre":[]
     }
+  ],
+  "igre":[
+
   ]
 }
