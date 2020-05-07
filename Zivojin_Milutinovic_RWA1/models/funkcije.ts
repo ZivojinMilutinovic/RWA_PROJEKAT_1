@@ -1,7 +1,7 @@
 import User from "./user"
 import UserManagement from "./usermanagment";
 
-
+let izabraniNivoIgrice=null;
 
 const URL="http://localhost:3000/";
 
@@ -11,8 +11,10 @@ const URL="http://localhost:3000/";
     return fetch(URL+"users").then(res=>res.json()).catch(err=>console.log(err));
     }
 
-function pokaziLogin()
+function pokaziLogin(ev:Event)
 {
+    
+    console.log((ev.target as HTMLElement).parentNode) ;
     let login=document.getElementById('login');
     document.body.style.display="block";
     (document.getElementsByClassName("bg") as HTMLCollectionOf<HTMLElement>)[0].style.display="none";
@@ -172,7 +174,49 @@ function otvoriProfilnuStranicu(korisnickoIme:string){
         
     });
    
+   
 }
+export function dodajEventNaPrvuIgru(){
+   let el= document.getElementById("zapocniIgruDugme");
+   
+   el!.addEventListener("click",()=>
+    {
+        
+        document.getElementById('profil')!.style.display='none';
+        document.body.classList.remove('profilPozadina');
+        document.body.style.display="block";
+        document.body.classList.add('igraPrva');
+        document.getElementById('igra1')!.style.display='block';
+        generisiTablu();
+    });
+   
+
+
+}
+
+function generisiTablu(){
+    let beloSledecePolje=true;
+    let tablaDiv=document.getElementsByClassName("board")[0];
+    for(let i=0;i<8;i++){
+        let divKolona=document.createElement("div");
+        divKolona.classList.add("kolona");
+        tablaDiv.appendChild(divKolona);
+        for(let j=0;j<8;j++){
+                let divPolje=document.createElement("div");
+                divPolje.classList.add("polje");
+                if(beloSledecePolje)
+                divPolje.classList.add("belaBoja");
+                else
+                divPolje.classList.add("crnaBoja");
+                beloSledecePolje=beloSledecePolje==true ? false : true ;
+                divKolona.appendChild(divPolje);
+
+        }
+        beloSledecePolje=beloSledecePolje==true ? false : true ;
+    }
+}
+
+
 
 function nacrtajProfilnuStranu(ulogovaniKorisnik:User) {
     

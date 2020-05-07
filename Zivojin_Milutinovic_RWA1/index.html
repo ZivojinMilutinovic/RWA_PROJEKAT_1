@@ -26,7 +26,7 @@
         </div>
         <div id="right">
             <ul>
-                <li>
+                <li id="0">
                      <img src="/slike/lak.jpg" />
                      <span>
                          <strong>Lak nivo</strong>
@@ -34,7 +34,7 @@
                      </span>
                     
                 </li>
-                <li>
+                <li id="1">
                      <img src="/slike/srednji.jpg" />
                      <span>
                          <strong>Srednji nivo</strong>
@@ -42,7 +42,7 @@
                      </span>
                     
                 </li>
-                <li>
+                <li id="2">
                      <img src="slike/tezak.jpg" />
                      <span>
                          <strong>Tezak nivo</strong>
@@ -190,9 +190,37 @@
             <div class="side2_marquee"><span class="marquee"></span></div>
      
         </div>
+        <div class="row d-flex justify-content-center " >
+          <!--
+            <div class=" form-group">
+                <label for="pretraziKorisnike">Pretrazite korisnike</label>
+                <input type="text" id="pretraziKorisnike" class="form-control" />
+            </div>
+            -->
+            <div class="d-flex justify-content-center zapIgre">
+                <button class="btn btn-danger" id="zapocniIgruDugme">Zapocni igre</button>
+           </div>
+        </div>
+    </div>
+    <div id="igra1">
         <div class="row">
+        <div class="col-4" id="prvaIgraObavestenje">Klikcite na polja kad zasvetle sto brze mozete da 
+            ostvarite najbolji rezultat</div>
+        <div class="offset-4 col-4" id="rezultatPrvi">
 
         </div>
+        <button class="btn btn-primary" id="btn1Igra1">
+            Zapocni
+        </button>
+       </div>
+        <div class="board">
+        
+        </div>
+       
+        <button class="btn btn-danger" id="btnIgra1" >
+             Sledeca igra
+        </button>
+
     </div>
 </body>
 <script src='dist/bundle.js'></script>

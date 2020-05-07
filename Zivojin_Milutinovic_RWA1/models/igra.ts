@@ -2,10 +2,10 @@
 
 
 export default class Igra{
-           id:any
-           brojOsvojenihPoena:number
-           nivoTezine:number
-           static generator:number=-1
+           id:number;
+           brojOsvojenihPoena:number;
+           nivoTezine:number;
+           static generator:number=-1;
     constructor(brojOsvojenihPoena:number,nivoTezine:number){
     
         this.id=Igra.generisiId();//jedinstveni identifikator za svaku igru
