@@ -334,6 +334,7 @@ transform:perspective(800px) rotateY(-64deg);
 #igra1{
     display: none;
     overflow-x: hidden;
+    
 }
 .igraPrva{
     background-color: #ddd;
@@ -413,6 +414,7 @@ transform: rotate(90deg) skewY(45deg);
         .board{
             transform:translate(-50%,-50%) scale(0.7);
         }
+      
         }
     #prvaIgraObavestenje{
        margin: 10px !important;
@@ -431,3 +433,126 @@ transform: rotate(90deg) skewY(45deg);
         right: 30px;
         bottom: 30px;
     }
+    .crvenoPolje{
+        background-color: red !important;
+    }
+    .kliknutoPolje{
+        background-color: gold !important;
+    }
+    #osvojeniPoeniPrvaIgra
+    {
+        position: absolute;
+        left: 10px;
+        bottom: 80px;
+        line-height: 30px;
+        font-weight: bold;
+       
+    }
+
+    /*Rotirajuca kocka*/
+
+    #igra2{
+        overflow:hidden;
+    }
+    .stage
+{
+    width: 200px;
+    height: 200px;
+    margin: 120px auto;
+    animation:none;
+    perspective:800px;
+    transform-style: preserve-3d;
+    display: flex;
+    
+
+}
+
+.komp
+{
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    perspective-origin: 250% 250%;
+    transform-style: preserve-3d;
+    transform-origin: 0 0;
+    transform: translateZ(-75px);
+    backface-visibility: visible;
+    
+    
+    
+    
+}
+.face
+{
+    width: 200px;
+    height: 200px;
+    display: block;
+    position: absolute;
+    font-family: sans-serif;
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  
+  
+  
+}
+.front
+{
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateZ(100px);
+    
+}
+.back
+{
+    background: rgba(0, 255, 0, 1);
+    color: black;
+    transform: rotateY(180deg) translateZ(100px);
+}
+.right {
+    background: rgba(196, 0, 0, 0.7);
+    transform: rotateY(90deg) translateZ(100px);
+  }
+  .left {
+    background: rgba(0, 0, 196, 0.7);
+    transform: rotateY(-90deg) translateZ(100px);
+  }
+  .top {
+    background: rgba(196, 196, 0, 0.7);
+    transform: rotateX(90deg) translateZ(100px);
+  }
+  .bottom {
+    background: rgba(196, 0, 196, 0.7);
+    transform: rotateX(-90deg) translateZ(100px);
+  }
+  @keyframes rotate
+  {
+      to
+      {
+          transform:rotate(360deg)  ;
+
+      }
+  }
+#igra2{
+    display: none;
+}
+.crnaPozadina{
+    background: black ;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+ .app h1 {
+    font-family: Lato;
+    color: white;
+    font-size: 44px;
+  }
+  #rotirajucaKocka,#sakrijDivKocka{
+      display: none;
+  }
+
+  

@@ -206,13 +206,24 @@
         <div class="row">
         <div class="col-4" id="prvaIgraObavestenje">Klikcite na polja kad zasvetle sto brze mozete da 
             ostvarite najbolji rezultat</div>
-        <div class="offset-4 col-4" id="rezultatPrvi">
-
-        </div>
-        <button class="btn btn-primary" id="btn1Igra1">
-            Zapocni
-        </button>
+            <div class="col-4 offset-2">
+                <div class="text-center" id="vremePoslednjegKlika">
+                    Vreme poslednjeg klika:
+               </div>
+               <div class="text-center" id="vremeProsecnogKlika">
+               Ukupno vreme klika:
+           </div>
+            </div>
        </div>
+      
+
+            
+       <button class="btn btn-primary" id="btn1Igra1">
+        Zapocni
+    </button>
+    <span id="osvojeniPoeniPrvaIgra"> 
+            Osvojeni poeni:
+    </span>
         <div class="board">
         
         </div>
@@ -222,6 +233,44 @@
         </button>
 
     </div>
+
+    <div id="igra2">
+        <div class="app">
+            <h1 id="message"></h1>
+        </div>
+        <div class="con" id="rotirajucaKocka">
+            <div class="stage">
+              <div class="komp">
+                <div class="top face">5</div>
+                <div class="left face">4</div>
+                <div class="right face">3</div>
+                <div class="back face">6</div>
+                <div class="front face">1</div>
+                <div class="bottom face">2</div>
+               </div>
+    
+            </div>
+        </div>
+        <div class="container" id="sakrijDivKocka">
+            <div class="row justify-content-center">
+        <div id="inputDrugaIgra" class="form-group col-lg-6 col-md-8 col-sm-12">
+            <label>Unesite broj koji videte kad kocka stane</label>
+            <input type="text" class="form-control" />
+        </div>
+    </div>  
+     <div class="row">
+        <div id="drugaIgraVreme" class="col-lg-4 col-sm-12 col-md-8 col">Potrebno vreme da upisete broj:</div>
+        <div class="col-lg-4 offset-lg-6 col-sm-12 col-md-8">Prosecno potrebno vreme:</div>
+    </div>
+    <div class="row justify-content-center"><button class="btn btn-danger">
+        Poslednja igra
+    </button></div>
+    </div>
+
+    </div>
+    <!--Ovde se zavrsava druga igra-->
+
+
 </body>
 <script src='dist/bundle.js'></script>
 
