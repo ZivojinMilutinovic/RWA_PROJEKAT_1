@@ -555,4 +555,11 @@ transform: rotate(90deg) skewY(45deg);
       display: none;
   }
 
-  
+  /* Poslednja strana aplikacije*/
+  #poslednjaStrana{
+      display: none;
+  }
+  .finalnaPozadina{
+    background-image: url(/slike/keyboard.jpg);
+    background-size: cover;
+  }

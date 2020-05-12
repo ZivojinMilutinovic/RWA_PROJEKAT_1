@@ -5,6 +5,10 @@ import Igra from "./igra";
 
 let izabraniNivoIgrice:number;
 let igra:Igra;
+let korisnickoIme:string;
+let sifra:string;
+let prviProlaz:boolean=true;
+let nadjeniUserI:User;
 
 const URL="http://localhost:3000/";
 
@@ -20,7 +24,7 @@ function pokaziLogin(ev:Event)
     let klinutiElement:(Node & ParentNode) | null=(ev.target as HTMLElement).parentNode ;
     izabraniNivoIgrice=(klinutiElement! as any).id;
     igra=new Igra(0,izabraniNivoIgrice);
-    
+    console.log(igra)
     let login:HTMLElement|null=document.getElementById('login');
     document.body.style.display="block";
     (document.getElementsByClassName("bg") as HTMLCollectionOf<HTMLElement>)[0].style.display="none";
@@ -44,16 +48,16 @@ linkRegistrujSe!.addEventListener('click',registrujSe);
 }
 
 function ulogujSe(){
-let korisnickoIme:string=(document.getElementById("korisnickoImeLogin") as HTMLInputElement).value;
-let sifra:string=(document.getElementById("passwordLogin") as HTMLInputElement).value;
+korisnickoIme=(document.getElementById("korisnickoImeLogin") as HTMLInputElement).value;
+sifra=(document.getElementById("passwordLogin") as HTMLInputElement).value;
 
 
 fetchLoginUsers().then(users=>{
     
-    let nadjeniUser:User= users.find((user:User)=>user.korisnickoIme==korisnickoIme && user.sifra==sifra);
+    nadjeniUserI= users.find((user:User)=>user.korisnickoIme==korisnickoIme && user.sifra==sifra);
     
     let loginDivGreska:HTMLElement|null=document.getElementById("loginGreska");
-    if(nadjeniUser==undefined){
+    if(nadjeniUserI==undefined){
         //Korisnik nije pronadjen
         loginDivGreska!.innerHTML="Nazalost,pogresili ste sifru ili email.";
     }
@@ -159,7 +163,7 @@ function obavestiGreskuRegister(nazivGreske :string) {
 }
 
 function podesiPocetnuStranicu(){
-    document.body.classList.remove(...(document.body.classList as any));
+    document.body.classList.remove(...(document.body.classList as any));//izbaiti sve pozadine
     (document.body.querySelector(".bg") as HTMLElement).style.display="block";
     (document.body.querySelector(".bg2") as HTMLElement).style.display="block";
     document.getElementById("login")!.style.display="none";
@@ -193,7 +197,7 @@ export function dodajEventNaPrvuIgru(){
         document.body.style.display="block";
         document.body.classList.add('igraPrva');
         document.getElementById('igra1')!.style.display='block';
-        generisiTablu();
+        generisiTablu(prviProlaz);
     });
    document.getElementById("btn1Igra1")?.addEventListener("click",prvaIgraZapoceta);
    document.getElementById("btnIgra1")?.addEventListener("click",predjiNaSledecuIgru);
@@ -218,15 +222,57 @@ parsovanInt=0;
 igra.brojOsvojenihPoena+=Number.parseInt(elm!);
 document.getElementById('igra1')!.style.display='none';
 document.getElementById('igra2')!.style.display='block';
-
 postaviObavestenjeZaDruguIgru();
-pogodiBrojNaKocki();
+//let btnZapocni : HTMLElement | null=document.getElementById("zapocniIgra2");
+//btnZapocni!.addEventListener("click",pogodiBrojNaKocki);
+let btnKraj: HTMLElement | null=document.getElementById("kraj");
+btnKraj!.addEventListener("click",prikaziKraj);
+
 
 }
 
+//Kada korisnik klikne na kraj prikazuje se ovo
+function prikaziKraj(){
+    console.log(igra);
+    let drugaIgraPoeni: HTMLElement | null=document.getElementById("drugaIgraPoeni");
+    igra.brojOsvojenihPoena+=Number.parseInt(drugaIgraPoeni!.innerHTML.split(":")[1]);
+    document.getElementById('igra2')!.style.display='none';
+    document.getElementById('poslednjaStrana')!.style.display='block';
+    document.getElementById("nazadPocetak")!.addEventListener("click",nazadNaPocetak);
+        document.getElementById('poslednjeIme')!.innerHTML=korisnickoIme;
+        document.getElementById('osvPoeni')!.innerHTML+=igra.brojOsvojenihPoena+"poena.";
+        document.body.classList.remove(...(document.body.classList as any));
+        document.body.classList.add("finalnaPozadina");
+        nadjeniUserI.odigraneIgre.push(igra.id);
+        nadjeniUserI.najboljiRezultat=nadjeniUserI.najboljiRezultat>igra.brojOsvojenihPoena?
+        nadjeniUserI.najboljiRezultat:igra.brojOsvojenihPoena;
+        
+        updateUser(nadjeniUserI).then(()=>console.log("Korisnik updejtovan")).catch(er=>console.log(er));
+       
+    
+}
+async function updateUser(user:User){
+    console.log(URL+"users/?korisnickoIme="+user.korisnickoIme)
+    return fetch(URL+"users/?korisnickoIme="+user.korisnickoIme,{
+        method:'PUT',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(user)
+    });
+}
+
+function nazadNaPocetak(){
+    location.reload();
+    return false;
+    
+}
 
 
-function generisiTablu(){
+function generisiTablu(prolaz:boolean){
+    if(!prolaz)
+    return;
     let beloSledecePolje:boolean=true;
     let tablaDiv:Element|null=document.getElementsByClassName("board")[0];
     for(let i=0;i<8;i++){

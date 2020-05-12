@@ -11,7 +11,7 @@ export default class User{
     email:string
     grad:string
     najboljiRezultat:number
-    odigraneIgre: Igra[]
+    odigraneIgre: number[]
     constructor(godinaRodjenja:string,ime:string,prezime:string,
         sifra:string,korisnickoIme:string,pol:string,email:string,grad:string)
     {

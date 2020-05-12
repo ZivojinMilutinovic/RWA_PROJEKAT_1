@@ -73,10 +73,7 @@
          
      </div>
      <div class="form-group">
-         <div>
-         <label  class="text-white" for="zapamtiPoeneLogin">Zapamti broj poena</label>
-         <input   class="custom-checkbox" type="checkbox" id="zapamtiPoeneLogin"/>
-         </div>
+        
          <div class="row justify-content-center mb-2">
              <button class="btn btn-primary mr-3 ml-3">Uloguj se</button>
              <button class="btn btn-danger mr-3 ml-3 pocetna">Nazad</button>
@@ -236,7 +233,7 @@
 
     <div id="igra2">
         <div class="app">
-            <h1 id="message"></h1>
+            <h1 id="message" class="text-center"></h1>
         </div>
         <div class="con" id="rotirajucaKocka">
             <div class="stage">
@@ -255,20 +252,31 @@
             <div class="row justify-content-center">
         <div id="inputDrugaIgra" class="form-group col-lg-6 col-md-8 col-sm-12">
             <label>Unesite broj koji videte kad kocka stane</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" id="inputKocka" />
         </div>
     </div>  
-     <div class="row">
-        <div id="drugaIgraVreme" class="col-lg-4 col-sm-12 col-md-8 col">Potrebno vreme da upisete broj:</div>
-        <div class="col-lg-4 offset-lg-6 col-sm-12 col-md-8">Prosecno potrebno vreme:</div>
+     <div class="row justify-content-between">
+        <div id="drugaIgraPoeni" class="col-lg-4 col-sm-12 col-md-8 col">Broj pogodjenih brojeva:0</div>
+       
     </div>
-    <div class="row justify-content-center"><button class="btn btn-danger">
-        Poslednja igra
-    </button></div>
+    <div class="row justify-content-center mt-4 ">
+<button class="btn btn-primary" id="kraj">
+Poslednja strana
+</button></div>
     </div>
 
     </div>
     <!--Ovde se zavrsava druga igra-->
+    <div id="poslednjaStrana" >
+        <div class="container">
+        <h3 class="text-white">Cestitam uspeli ste <span id="poslednjeIme"></span></h3>
+        <h2 class="text-white" id="osvPoeni">Vasi refleksi su izuzetni i na kraju ste osvojili:</h2>
+        <h1 class="text-white">Nadam se da ste uzivali</h1>
+        <div class="row justify-content-start  mt-3">
+        <button class="btn btn-primary" id="nazadPocetak">Nazad na pocetak</button>
+    </div>
+    </div>
+    </div>
 
 
 </body>

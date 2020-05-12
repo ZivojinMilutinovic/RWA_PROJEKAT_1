@@ -1,8 +1,9 @@
-import {interval,timer,fromEvent, Observable,zip, Subscription,concat,empty,merge,generate} from "rxjs";
-import {take,takeUntil,map,switchMap,scan,filter,startWith,delay, takeLast} from "rxjs/operators";
+import {interval,timer,fromEvent, Observable,zip, Subscription,concat,empty,merge} from "rxjs";
+import {take,takeUntil,map,switchMap,scan,filter,startWith,delay, tap,repeat,finalize} from "rxjs/operators";
 
 
-let izabraniNivoIgrice:number;
+let izabraniNivoIgrice:number=0;
+let zadnjeZapamcenBroj:number;
 function izaberiNasumicnoPolje() {
     let random=()=>Math.floor(Math.random()*8);
     let brojKolone:number=random();
@@ -41,10 +42,11 @@ function izaberiNasumicnoPolje() {
 
     }
 
-  export  function RxZasvetliPojaNatabli(izabraniNivoIgrice:number){
+  export  function RxZasvetliPojaNatabli(izabraniNivo:number){
          //polja se emituju dok tajmer ne istekne tj. dok tajmer ne emituje vrednost
+          
         const source:Observable<number>=interval(1000);
-        const timer$:Observable<number>=timer((izaberiTrajenjeIgre(izabraniNivoIgrice)!+1)*1000);
+        const timer$:Observable<number>=timer((izaberiTrajenjeIgre(izabraniNivo)!+1)*1000);
         const polja$:Subscription=source.pipe(map(izaberiNasumicnoPolje),takeUntil(timer$))
         .subscribe((slucajnoPolje)=>setTimeout(()=>slucajnoPolje.classList.remove('crvenoPolje'),999));
         prosecnoVremeZaKlik();
@@ -129,26 +131,83 @@ function prikaziRotirajucuKocku(){
    document.body.classList.remove("crnaPozadina");
    document.getElementById("rotirajucaKocka")!.style.display="block";
    document.getElementById("sakrijDivKocka")!.style.display="block";
+   pogodiBrojNaKocki();
 }
 
-function vratiBrojRotiranjaKocke(izabraniNivoIgrice:number)
+function vratiBrojRotiranjaKocke(izabraniNivo:number)
 {
-    if(izabraniNivoIgrice==0)
+    if(izabraniNivo==0)
     return 4;
-    else if(izabraniNivoIgrice==1)
+    else if(izabraniNivo==1)
     return 6;
     else return 9;
 }
+
+//dok ne emituje timer prikazuju se polja
+function spojiIntervaleUJedan(brojRotiranja:number){
+
+    let inputKocka:HTMLInputElement | null=document.getElementById("inputKocka") as HTMLInputElement;
+    let randomTime=Math.floor(Math.random()*7+4)*1000;//moze minimum 4s da traje 
+   
+    let front:HTMLElement=document.querySelector(".front") as HTMLElement;
+    let stage:HTMLElement=document.querySelector(".stage") as HTMLElement;
+    const first = interval(900);
+    inputKocka!.focus();
+const second = interval(300);
+
+const third = interval(500);
+
+const fourth = interval(700);
+const timer$=timer(randomTime);
+
+const randomSequence$ =concat(merge(
+    first,
+    second,
+    third,
+    fourth
+  ).pipe(tap(()=>{stage.style.animation="rotate 0.1s ease-in infinite";})
+  ,takeUntil(timer$)),empty().pipe(finalize(()=>stage.style.animation="none")),
+  empty().pipe(delay(3000)))
+  .pipe(finalize(focusNaInputfield),repeat(brojRotiranja));
+  randomSequence$.subscribe((val)=>front.innerHTML=(val+Math.floor(Math.random()*500+1)).toString(),
+  ()=>{},sakrijKockineElemente);
+
+}
+
+function sakrijKockineElemente(){
+    document.getElementById("rotirajucaKocka")!.style.display='none';
+    document.getElementById("inputDrugaIgra")!.style.display='none';
+}
+
+function focusNaInputfield(){
+    let stage:HTMLElement=document.querySelector(".stage") as HTMLElement;
+    let front:HTMLElement=document.querySelector(".front") as HTMLElement;
+    let drugaIgraPoeni: HTMLElement | null=document.getElementById("drugaIgraPoeni");
+    let inputKocka:HTMLInputElement | null=document.getElementById("inputKocka") as HTMLInputElement;
+    stage.style.animation="none";
+    console.log(inputKocka.value);
+    console.log(front.innerHTML);
+    let trPoeni=Number.parseInt(drugaIgraPoeni!.innerHTML.split(":")[1]);
+    if(inputKocka.value==front.innerHTML)
+    {
+        
+        drugaIgraPoeni!.innerHTML="Broj pogodjenih brojeva:"+(trPoeni+1);
+    }
+    
+    inputKocka!.value="";
+    
+    inputKocka!.focus();
+    
+}
+
+
 // rotate 0.1s ease-in  infinite
 export function pogodiBrojNaKocki(){
+    
     let brojRotiranja:number=vratiBrojRotiranjaKocke(izabraniNivoIgrice);
-    let front:HTMLElement=document.querySelector(".front") as HTMLElement;
-    for(let i:number=0;i<brojRotiranja;i++){
-        let randomTime:number=Math.floor(Math.random()*10+1);
-        let randomNumber:number=Math.floor(Math.random()*1000+1);
-
-
-    }
+    
+  spojiIntervaleUJedan(brojRotiranja);
+  
 
 }
 
